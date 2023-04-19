@@ -20,6 +20,12 @@ void execmd(char **argv)
 		/* generate the path to this command before passing it to execve */
 		/* actual_command = get_location(command); */
 
+		if (strcmp(command, "exit") == 0)
+			exit_shell();
+
+		if (strcmp(command, "env") == 0)
+			env_shell();
+
 		while (argv[num_tokens] != NULL)
 		{
 			if (num_tokens == MAX_TOKENS - 1)
