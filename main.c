@@ -11,27 +11,27 @@
 
 int main(int ac __attribute__((unused)), char **argv __attribute__((unused)))
 {
-	char prompt[] = "$ ";
-	char input_str[MAX_INPUT_LEN];
+	char prompt[] = "$> ", *tokens[MAX_TOKENS] = {NULL}, input_str[MAX_INPUT_LEN], **tokens_copy;
 	int num_tokens = 0, i;
-	char *tokens[MAX_TOKENS] = {NULL};
 
 	/* Loop for the shell's prompt */
 	while (1)
 	{
 		printf("%s", prompt);
 		get_input(input_str, tokens, &num_tokens);
-		execmd(tokens);
-
-		for (i = 0; i < num_tokens; i++)
+		
+		tokens_copy = malloc((num_tokens + 1) * sizeof(char *));
+		if (tokens_copy == NULL)
 		{
-			if (tokens[i] != NULL)
-			{
-				free(tokens[i]);
-				tokens[i] = NULL;
-			}
+			fprintf(stderr, "Error: failed to allocate memory for tokens\n");
+			return (-1);
 		}
+		memcpy(tokens_copy, tokens, (num_tokens + 1) * sizeof(char *));
+		parse_command(tokens_copy, num_tokens);
+
 		num_tokens = 0;
+		free(tokens_copy);
+		tokens_copy = NULL;
 	}
 
 	return (0);

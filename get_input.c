@@ -15,11 +15,12 @@ int get_input(char *input_str, char **tokens, int *num_tokens)
 	if (fgets(input_str, MAX_INPUT_LEN, stdin) == NULL)
 	{
 		printf("Exiting shell....\n");
+		exit (0);
 		return (-1);
 	}
 
 	/* Split the string into tokens */
-	tokens[*num_tokens] = strtok(input_str, "\n");
+	tokens[*num_tokens] = strtok(input_str, DELIMS);
 	while (tokens[*num_tokens] != NULL)
 	{
 		if (*num_tokens == MAX_TOKENS - 1)
@@ -28,7 +29,7 @@ int get_input(char *input_str, char **tokens, int *num_tokens)
 			break;
 		}
 		(*num_tokens)++;
-		tokens[*num_tokens] = strtok(NULL, "\n");
+		tokens[*num_tokens] = strtok(NULL, DELIMS);
 	}
 	tokens[*num_tokens] = NULL;
 
