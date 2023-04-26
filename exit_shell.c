@@ -5,7 +5,7 @@
  * Return: void
  */
 
-void exit_shell(status)
+void exit_shell(int status)
 {
 	exit(status);
 }

@@ -1,18 +1,22 @@
 #include "main.h"
-
+/**
+ *get_location - gets location of a command
+ *@command: cmd passed by user
+ *Return: Null
+ */
 char *get_location(char *command)
 {
 	char *path = getenv("PATH"), *path_copy, *path_token, *file_path;
 	int command_length, directory_length;
 	struct stat st;
 
-	if (path)
+	if (path && (strcmp(command, "exit") != 0))
 	{
 		path_copy = strdup(path);
 		command_length = strlen(command);
 		path_token = strtok(path_copy, ":");
 
-		while(path_token != NULL)
+		while (path_token != NULL)
 		{
 			directory_length = strlen(path_token);
 			file_path = malloc(command_length + directory_length + 2);

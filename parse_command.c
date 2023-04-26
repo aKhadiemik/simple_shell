@@ -1,19 +1,25 @@
 #include "main.h"
-
+/**
+ *parse_command - parses command
+ *@tokens: string of tokens from cmd
+ *@num_tokens: number of tokens
+ *Return: status
+ */
 int parse_command(char **tokens, int num_tokens)
 {
 	int status, exit_status;
+
 	if (tokens && num_tokens > 0)
 	{
 		if (strcmp(tokens[0], "exit") == 0)
 		{
 			status = (tokens[1] != NULL) ? atoi(tokens[1]) : 0;
-			exit(status);
+			exit_shell(status);
 		}
 		else
 		{
 			pid_t pid = fork();
-			
+
 			if (pid == -1)
 			{
 				perror("Error:");

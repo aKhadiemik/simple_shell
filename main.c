@@ -11,15 +11,16 @@
 
 int main(int ac __attribute__((unused)), char **argv __attribute__((unused)))
 {
-	char prompt[] = "$> ", *tokens[MAX_TOKENS] = {NULL}, input_str[MAX_INPUT_LEN], **tokens_copy;
-	int num_tokens = 0, i;
+	char prompt[] = "$ ", *tokens[MAX_TOKENS] = {NULL}, input_str[MAX_INPUT_LEN];
+	char **tokens_copy;
+	int num_tokens = 0;
 
 	/* Loop for the shell's prompt */
 	while (1)
 	{
 		printf("%s", prompt);
 		get_input(input_str, tokens, &num_tokens);
-		
+
 		tokens_copy = malloc((num_tokens + 1) * sizeof(char *));
 		if (tokens_copy == NULL)
 		{

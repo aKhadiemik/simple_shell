@@ -15,7 +15,7 @@ int get_input(char *input_str, char **tokens, int *num_tokens)
 	if (fgets(input_str, MAX_INPUT_LEN, stdin) == NULL)
 	{
 		printf("Exiting shell....\n");
-		exit (0);
+		exit(0);
 		return (-1);
 	}
 
