@@ -1,11 +1,11 @@
 #include "main.h"
 /**
  * exit_shell - exits the custom shell
- * @command: command to be passed
+ * @status: command to be passed
  * Return: void
  */
 
-void exit_shell(void)
+void exit_shell(status)
 {
-	exit(0);
+	exit(status);
 }
