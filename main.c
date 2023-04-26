@@ -23,6 +23,7 @@ int main(int ac __attribute__((unused)), char **argv __attribute__((unused)))
 		if (interact)
 		{
 			printf("%s", prompt);
+			fflush(stdout);
 		}
 		get_input(input_str, tokens, &num_tokens);
 
