@@ -13,12 +13,17 @@ int main(int ac __attribute__((unused)), char **argv __attribute__((unused)))
 {
 	char prompt[] = "$ ", *tokens[MAX_TOKENS] = {NULL}, input_str[MAX_INPUT_LEN];
 	char **tokens_copy;
-	int num_tokens = 0;
+	int num_tokens = 0, interact = is_interactive();
+
+	signal(SIGINT, sigint_handler);
 
 	/* Loop for the shell's prompt */
 	while (1)
 	{
-		printf("%s", prompt);
+		if (interact)
+		{
+			printf("%s", prompt);
+		}
 		get_input(input_str, tokens, &num_tokens);
 
 		tokens_copy = malloc((num_tokens + 1) * sizeof(char *));

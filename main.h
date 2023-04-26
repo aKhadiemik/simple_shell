@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 #define MAX_INPUT_LEN 1024
 #define MAX_TOKENS 64
@@ -20,5 +21,7 @@ char *get_location(char *command);
 void exit_shell(int status);
 void env_shell(void);
 int parse_command(char **tokens, int num_tokens);
+int is_interactive(void);
+void sigint_handler(int sig);
 
 #endif /* MAIN_H */
